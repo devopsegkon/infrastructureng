@@ -67,12 +67,14 @@ jobs:
       #- name: 'Docker Auth'
       #  run:  |-
       #    gcloud auth configure-docker us-central1-docker.pkg.dev
-      - name: Login to GAR
-        uses: docker/login-action@v3
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v1'
         with:
-          registry: us-central1-docker.pkg.dev
-          username: oauth2accesstoken
-          password: ${{ steps.auth.outputs.access_token }}
+          project_id: '${{ env.PROJECT_ID }}'
+
+      - name: 'Docker auth'
+        run: |-
+         gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev
 
       - name: 'Build and Push Container'
         run: |-

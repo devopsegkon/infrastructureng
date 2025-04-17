@@ -67,14 +67,12 @@ jobs:
       #- name: 'Docker Auth'
       #  run:  |-
       #    gcloud auth configure-docker us-central1-docker.pkg.dev
-      - name: 'Set up Cloud SDK'
-        uses: 'google-github-actions/setup-gcloud@v1'
-        with:
-          project_id: '${{ env.PROJECT_ID }}'
-
-      - name: 'Docker auth'
+      - id: 'gcloud'
+        name: 'gcloud'
         run: |-
-         gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev
+          gcloud auth login --brief --cred-file="${{ steps.auth.outputs.credentials_file_path }}"
+          gcloud services list
+          gcloud auth configure-docker us-central1-docker.pkg.dev
 
       - name: 'Build and Push Container'
         run: |-

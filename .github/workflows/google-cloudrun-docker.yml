@@ -57,6 +57,7 @@ jobs:
         name: 'Authenticate to Google Cloud'
         uses: 'google-GitHub-actions/auth@v1'
         with:
+          token_format: access_token
           create_credentials_file: true
           workload_identity_provider: ${{ env.WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ env.SERVICE_ACCOUNT_EMAIL }}

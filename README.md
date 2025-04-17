@@ -16,4 +16,6 @@ Load Balancing
 
 Unfortunately, I run into issues getting the Github Actions to authenticate to GCP Artifact Registry and this version does not run.
 
+I tried to showcase how to authenticate using the Workload Identity Provider but even following the examples shown online did not yield positive results.
+
 My idea was to have Github Actions ultimately authenticate to Terraform cloud so that all the resources that I mention above could have been created, after the image was built and pushed to Artifact Registry.

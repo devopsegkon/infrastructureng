@@ -71,7 +71,7 @@ jobs:
         name: 'gcloud'
         run: |-
           gcloud auth login --brief --cred-file="${{ steps.auth.outputs.credentials_file_path }}"
-          gcloud services list
+          gcloud artifacts locations list
           gcloud auth configure-docker us-central1-docker.pkg.dev
 
       - name: 'Build and Push Container'

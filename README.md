@@ -9,10 +9,10 @@ The reason to choose Cloud Run is because it automatically scales, and its abili
 
 The version in this repo only deploys to Cloud Run but the objective, time permitting was to deploy things such as:
 
-Cloud Armor
-Cloud Logging
-VPC Setup 
-Load Balancing
+* Cloud Armor
+* Cloud Logging
+* VPC Setup 
+* Load Balancing
 
 Unfortunately, I run into issues getting the Github Actions to authenticate to GCP Artifact Registry and this version does not run.
 

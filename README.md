@@ -16,10 +16,6 @@ The version in this repo only deploys to Cloud Run but the objective, time permi
 
 Unfortunately, I run into issues getting the Github Actions to authenticate to GCP Artifact Registry and this version does not run.
 
-<<<<<<< HEAD
 I tried to showcase how to authenticate using the Workload Identity Provider but even following the examples shown online did not yield positive results.
 
 My idea was to have Github Actions ultimately authenticate to Terraform cloud so that all the resources that I mention above could have been created, after the image was built and pushed to Artifact Registry.
-=======
-My idea was to have Github Actions ultimately authenticate to Terraform cloud so that all the resources that I mention above could have been created, after the image was built and pushed to Artifact Registry.
->>>>>>> 25fad431cbf50e383a8110ce46e80162f21d83df

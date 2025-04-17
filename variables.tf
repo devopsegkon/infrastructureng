@@ -9,8 +9,3 @@ variable "region" {
     description = "Region Google project"
     default = "us-central1"
 }
-
-variable "image" {
-    type= string
-    description = "Image to deploy"
-}

@@ -33,6 +33,7 @@ on:
   push:
     branches:
       - '"main"'
+  workflow_dispatch:
 
 env:
   PROJECT_ID: 'gothic-jigsaw-457115-v3' # TODO: update to your Google Cloud project ID

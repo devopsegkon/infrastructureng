@@ -39,7 +39,7 @@ env:
   PROJECT_ID: 'gothic-jigsaw-457115-v3' # TODO: update to your Google Cloud project ID
   REGION: 'us-central1' # TODO: update to your region
   SERVICE: 'hello-world' # TODO: update to your service name
-  WORKLOAD_IDENTITY_PROVIDER: 'projects/148244529057/locations/global/workloadIdentityPools/github/providers/my-repo' # TODO: update to your workload identity provider
+  WORKLOAD_IDENTITY_PROVIDER: 'projects/148244529057/locations/global/workloadIdentityPools/ek-identity-pool/providers/ek-github-idp' # TODO: update to your workload identity provider
 
 jobs:
   deploy:

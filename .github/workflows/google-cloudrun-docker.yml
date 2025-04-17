@@ -39,6 +39,7 @@ env:
   PROJECT_ID: 'gothic-jigsaw-457115-v3' # TODO: update to your Google Cloud project ID
   REGION: 'us-central1' # TODO: update to your region
   SERVICE: 'hello-world' # TODO: update to your service name
+  GAR_NAME: 'gb-infra'
   WORKLOAD_IDENTITY_PROVIDER: 'projects/148244529057/locations/global/workloadIdentityPools/ga-pool/providers/ga-oidc' # TODO: update to your workload identity provider
   SERVICE_ACCOUNT_EMAIL: 'example-app-sa@gothic-jigsaw-457115-v3.iam.gserviceaccount.com'
 jobs:
@@ -64,11 +65,9 @@ jobs:
       #
       # If you already have a container image, you can omit these steps.
       - name: 'Docker Auth'
-        uses: 'docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7567' # docker/login-action@v3
-        with:
-          username: 'oauth2accesstoken'
-          password: '${{ steps.auth.outputs.auth_token }}'
-          registry: '${{ env.REGION }}-docker.pkg.dev'
+        run:  |-
+          gcloud auth configure-docker us-central1-docker.pkg.dev
+        
 
       - name: 'Build and Push Container'
         run: |-

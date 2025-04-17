@@ -67,18 +67,28 @@ jobs:
       #- name: 'Docker Auth'
       #  run:  |-
       #    gcloud auth configure-docker us-central1-docker.pkg.dev
-      - id: 'gcloud'
-        name: 'gcloud'
-        run: |-
-          gcloud artifacts locations list
-          gcloud auth configure-docker us-central1-docker.pkg.dev
+      #- id: 'gcloud'
+      #  name: 'gcloud'
+      #  run: |-
+      #    gcloud artifacts locations list
+      #    gcloud auth configure-docker us-central1-docker.pkg.dev
 
-      - name: 'Build and Push Container'
-        run: |-
-          DOCKER_TAG="${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{ github.sha }}"
-          docker build --tag "${DOCKER_TAG}" .
-          docker push "${DOCKER_TAG}"
-      - name: 'Deploy to Cloud Run'
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0.2.1
+        with:
+          version: 'latest'
+          project_id: ${{ env.PROJECT_ID }}
+          credentials_file_path: ${{ steps.auth-to-google-cloud.outputs.credentials_file_path }}
+
+      #- name: 'Build and Push Container'
+      #  run: |-
+      #    DOCKER_TAG="${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{ github.sha }}"
+      #    docker build --tag "${DOCKER_TAG}" .
+      #    docker push "${DOCKER_TAG}"
+
+      - name: 'Build and push Docker image'
+        run: |
+          gcloud builds submit --tag gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{ github.sha }}
 
         # END - Docker auth and build
 

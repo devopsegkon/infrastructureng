@@ -36,12 +36,12 @@ on:
   workflow_dispatch:
 
 env:
-  PROJECT_ID: 'gothic-jigsaw-457115-v3' # TODO: update to your Google Cloud project ID
+  PROJECT_ID: ${{ secrets.PROJECT_ID }} # TODO: update to your Google Cloud project ID
   REGION: 'us-central1' # TODO: update to your region
   SERVICE: 'hello-world' # TODO: update to your service name
   GAR_NAME: 'gb-infra'
-  WORKLOAD_IDENTITY_PROVIDER: 'projects/148244529057/locations/global/workloadIdentityPools/ekpool4/providers/gcr-d-apis-oidc' # TODO: 
-  SERVICE_ACCOUNT_EMAIL: 'example-app-sa@gothic-jigsaw-457115-v3.iam.gserviceaccount.com'
+  WORKLOAD_IDENTITY_PROVIDER: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }} # TODO: 
+  SERVICE_ACCOUNT_EMAIL: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
 jobs:
   deploy:
     runs-on: 'ubuntu-latest'

@@ -66,12 +66,6 @@ jobs:
           workload_identity_provider: ${{ env.WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ env.SERVICE_ACCOUNT_EMAIL }}
 
-      # BEGIN - Docker auth and build
-      #
-      # If you already have a container image, you can omit these steps.
-      #- name: 'Docker Auth'
-      #  run:  |-
-      #    gcloud auth configure-docker us-central1-docker.pkg.dev
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v0.2.1
         with:
@@ -93,7 +87,7 @@ jobs:
         id: vars
         run: |-
           cat > pipeline.auto.tfvars <<EOF
-          image= gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{ github.sha }}
+          image="gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{ github.sha }}""
           EOF
 
       # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
@@ -108,10 +102,10 @@ jobs:
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
       
-      - name: Terraform Apply
-        run: terraform apply -auto-approve -input=false
-        env:
-          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+      #- name: Terraform Apply
+      #  run: terraform apply -auto-approve -input=false
+      #  env:
+      #    GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
 
       - name: 'Deploy to Cloud Run'
         run: |
